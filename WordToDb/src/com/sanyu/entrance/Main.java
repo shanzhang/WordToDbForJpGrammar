@@ -1,26 +1,28 @@
-/**
- * 
- */
 package com.sanyu.entrance;
 
-import org.docx4j.openpackaging.exceptions.Docx4JException;
-import org.docx4j.openpackaging.packages.WordprocessingMLPackage;
-import org.docx4j.openpackaging.parts.WordprocessingML.MainDocumentPart;
+import com.sanyu.parser.WordParser;
+import com.sanyu.utils.Constants;
 
-/**
- * @author sycheung
- * 
- */
 public class Main {
 
-	public static void main(String arg[]) {
-		try {
-			WordprocessingMLPackage wordMLPackage = WordprocessingMLPackage.load(new java.io.File());
-			MainDocumentPart documentPart = wordMLPackage.getMainDocumentPart();
-		} catch (Docx4JException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	private static WordParser n1Parser;
+
+	private static WordParser n2Parser;
+
+	public static void n1Parse() {
+		n1Parser = new WordParser();
+		n1Parser.setLvlFlag(Constants.n1Flag);
+		n1Parser.parseProcess();
 	}
 
+	public static void n2Parse() {
+		n2Parser = new WordParser();
+		n2Parser.setLvlFlag(Constants.n2Flag);
+		n2Parser.parseProcess();
+	}
+
+	public static void main(String[] args) {
+		n1Parse();
+		n2Parse();
+	}
 }
